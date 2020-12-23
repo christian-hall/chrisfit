@@ -1,5 +1,5 @@
 
-
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Console {
@@ -102,5 +102,24 @@ public class Console {
 			}
 		}
 		return d;
+	}
+
+	public static LocalDate getDate(String yearPrompt, String monthPrompt, String dayPrompt) {
+		int year = getInt(yearPrompt);
+		int month = getInt(monthPrompt, 0, 13);
+		int day = 0;
+		if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+			day = getInt(dayPrompt, 0, 32);
+		} else if (month == 4 || month == 6 || month == 9 || month == 11) {
+			day = getInt(dayPrompt, 0, 31);
+		} else if (day == 2) {
+			if (year % 4 == 0) {
+				day = getInt(dayPrompt, 0, 30);
+			} else if (year % 4 != 0) {
+				day = getInt(dayPrompt, 0, 29);
+			}
+		}			
+		LocalDate date = LocalDate.of(year, month, day);
+		return date;
 	}
 }

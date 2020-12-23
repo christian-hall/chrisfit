@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class FileManager {
+public class FileEditor {
 
 	// checks that a file exists
 	public static Boolean verifyFile(String filepath) {

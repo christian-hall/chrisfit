@@ -20,16 +20,11 @@ public class ChrisFit {
 		// starting file
 		Boolean quit = false;
 		// check to see if the user file exists
-		quit = true; //delete this later
 		while (quit == false) {
+			quit = Menu.mainMenu(filepath);
 		}
-		try {
-			FileManager.appendFile(filepath, "\ntest append");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//Main Menu
+
+		
 		//goodbye text
 		System.out.println("\nGoodbye\n");
 	}
