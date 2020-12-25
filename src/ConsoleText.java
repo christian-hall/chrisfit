@@ -13,8 +13,9 @@ public class ConsoleText {
 		System.out.println();
 		System.out.println("************* MAIN MENU *************");
 		System.out.println("1 - enter weight");
-		System.out.println("2 - options");
-		System.out.println("3 - about");
+		System.out.println("2 - enter calories");
+		System.out.println("3 - options");
+		System.out.println("4 - about");
 		System.out.println("0 - quit");
 	}
 	

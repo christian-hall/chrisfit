@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Menu {
@@ -10,7 +11,7 @@ public class Menu {
 			LocalDate birthDay = Console.enterDate("Enter Birth Year, 4 digits: ", "Enter Birth Month, 2 digits: ",
 					"Enter Birth Day: ");
 			String sex = Console.getString("Enter your sex (M/F): ", "M", "F");
-			double height = Console.getDouble("Enter your height in inches: ");
+			double height = Console.getDouble("Enter height in inches: ");
 			double poundsperweek = Console.getDouble("How much do you want to lose a week (in pounds)?: ", 0.4, 2.1);
 			double weightGoal = Console.getDouble("Enter your weigh goal in lbs: ");
 			double activity = getActivity();
@@ -63,10 +64,31 @@ public class Menu {
 		case 0: // will always be quit
 			return true;
 		case 1: // initiate weigh-in
+			enterWeight(filepath);
 			return false;
 		default:
 			System.out.println("please enter valid choice");
 			return true;
 		}
+	}
+	
+	public static void enterWeight(String filepath) {
+		int id = Console.getIndex(filepath);
+		LocalDate date = null;
+		String weighToday = Console.getString("\nIs this for today? (y/n): ", "y", "n");
+		if (weighToday.equals("y")) {
+			date = LocalDate.now();
+		} else {
+			date = Console.enterDate("Enter year (4 digits): ", "Enter month (2 digits): ", "Enter date: ");
+		}
+		double weight = Console.getDouble("Enter weight: ");
+		int recommendation = Console.dailyCal(filepath, weight);
+		try {
+			FileEditor.appendFile(filepath, "\nLOG: " + id + " " + date + " " + weight + " " + recommendation + " " + 0);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

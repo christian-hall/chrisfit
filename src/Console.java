@@ -1,5 +1,7 @@
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Console {
@@ -122,7 +124,7 @@ public class Console {
 		LocalDate date = LocalDate.of(year, month, day);
 		return date;
 	}
-	
+
 	public static LocalDate getDate(String filepath, String key, int index) {
 		String dateString = FileEditor.readLine(filepath, key);
 		dateString = FileEditor.extractString(dateString, index);
@@ -150,24 +152,19 @@ public class Console {
 		if (thisYear > birthYear) {
 			if (thisMonth < birthMonth) {
 				age = (thisYear - birthYear - 1);
-			}
-			else if (thisMonth > birthMonth) {
+			} else if (thisMonth > birthMonth) {
 				age = (thisYear - birthYear);
-			}
-			else if (thisMonth == birthMonth) {
+			} else if (thisMonth == birthMonth) {
 				if (thisDay > birthMonth) {
 					age = (thisYear - birthYear);
-				}
-				else if (thisDay >= birthDay) {
+				} else if (thisDay >= birthDay) {
 					age = (thisYear - birthYear - 1);
 				}
 			}
 		}
 		return age;
 	}
-	
-	
-	
+
 	public static Boolean getBirthday(String filepath) {
 		LocalDate birthDate = getDate(filepath, "BIRTHDATE", 11);
 		LocalDate today = LocalDate.now();
@@ -185,18 +182,39 @@ public class Console {
 			return false;
 		}
 	}
-	
+
 	public static int dailyCal(String filepath, double todaysWeight) {
-		double age = (int)Console.getAge(filepath);
+		double age = (int) Console.getAge(filepath);
 		String sex = FileEditor.extractString(FileEditor.readLine(filepath, "SEX:"), 5);
-		double weekloss = (Double.parseDouble(FileEditor.extractString(FileEditor.readLine(filepath, "WEEKLOSS: "), 10)) * 500);
+		double weekloss = (Double.parseDouble(FileEditor.extractString(FileEditor.readLine(filepath, "WEEKLOSS: "), 10))
+				* 500);
 		double activity = Double.parseDouble(FileEditor.extractString(FileEditor.readLine(filepath, "ACTIVITY: "), 10));
 		double height = Double.parseDouble(FileEditor.extractString(FileEditor.readLine(filepath, "HEIGHT: "), 8));
 
 		if (sex.equalsIgnoreCase("m")) {
-			return (int)((activity * (66 + (6.2 * todaysWeight) + (12.7 * height) - (6.76 * age))) - weekloss);
+			return (int) ((activity * (66 + (6.2 * todaysWeight) + (12.7 * height) - (6.76 * age))) - weekloss);
 		} else {
-			return (int)((activity * (655.1 + (4.35 * todaysWeight) + (4.7 * height) - (4.7 * age))) - weekloss);
+			return (int) ((activity * (655.1 + (4.35 * todaysWeight) + (4.7 * height) - (4.7 * age))) - weekloss);
+		}
+	}
+
+	public static int getIndex(String filepath) {
+		String checkFile = FileEditor.tryReadLine(filepath, "LOG");
+		if (checkFile.equals("NULL")) {
+			return 1;
+		} else {
+			int highIndex = 0;
+			ArrayList<String> logs = new ArrayList<String>(FileEditor.readLogs(filepath, "LOG:"));
+			for (String log : logs) {
+				// parse string to extract int string
+				String indexString = FileEditor.extractString(log, 5);
+				String[] indexStrings = indexString.split(" ");
+				int index = Integer.parseInt(indexStrings[0]);
+				if (index > highIndex) {
+					highIndex = index;
+				}
+			}
+			return (highIndex + 1);
 		}
 	}
 }

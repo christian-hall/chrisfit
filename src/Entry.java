@@ -63,8 +63,6 @@ public class Entry {
 	public String toString() {
 		return id + " " + date + " " + weight + " " + recommendation + " " + calories;
 				
-				//"Entry [id=" + id + ", date=" + date + ", weight=" + weight + ", recommendation=" + recommendation
-				//+ ", calories=" + calories + "]";
 	}
 	
 	

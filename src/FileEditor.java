@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 public class FileEditor {
 
 	// checks that a file exists
@@ -48,7 +50,35 @@ public class FileEditor {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(filepath, true));
 		writer.write(filetext);
 		writer.close();
-				
 	}
 	
+	// tires to isolate the string, returns "NULL" if invalid
+	public static String tryReadLine(String filepath, String key) {
+		String line;
+		try (BufferedReader readFile = new BufferedReader(new FileReader(filepath))) {
+			while ((line = readFile.readLine()) != null) {
+				if (line.contains(key)) {
+					return line;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "NULL";
+	}
+	
+	public static ArrayList<String> readLogs(String filepath, String key) {
+		String line;
+		ArrayList<String> lines = new ArrayList<String>();
+		try (BufferedReader readFile = new BufferedReader(new FileReader(filepath))) {
+			while ((line = readFile.readLine()) != null) {
+				if (line.contains(key)) {
+					lines.add(line);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lines;
+	}
 }

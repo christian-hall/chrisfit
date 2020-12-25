@@ -19,7 +19,9 @@ public class ChrisFit {
 		while (quit == false) {
 			quit = Menu.mainMenu(filepath);
 		}
-		System.out.println(Console.dailyCal(filepath, 204.8));
+		
+		String line = FileEditor.tryReadLine(filepath, "LOG");
+		System.out.println(line);
 		System.out.println("\nGoodbye\n");
 	}
 
