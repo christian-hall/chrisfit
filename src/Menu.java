@@ -87,8 +87,7 @@ public class Menu {
 			FileEditor.appendFile(filepath, "\nLOG: " + id + " " + date + " " + weight + " " + recommendation + " " + 0);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}		
+		System.out.println("\nToday's Calorie Recommendation: " + recommendation);
 	}
 }
