@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class ChrisFit {
 
 	public static void main(String[] args) {
@@ -16,16 +14,12 @@ public class ChrisFit {
 		ConsoleText.intro();
 		final String filepath = location + "/userdata.txt";
 		Menu.loadFiles(filepath);
-		
-		// starting file
+				
 		Boolean quit = false;
-		// check to see if the user file exists
 		while (quit == false) {
 			quit = Menu.mainMenu(filepath);
 		}
-
-		
-		//goodbye text
+		System.out.println(Console.dailyCal(filepath, 204.8));
 		System.out.println("\nGoodbye\n");
 	}
 

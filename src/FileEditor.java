@@ -1,5 +1,4 @@
 import java.io.*;
-
 public class FileEditor {
 
 	// checks that a file exists
@@ -12,7 +11,6 @@ public class FileEditor {
 		}
 	}
 
-	// need to edit so the file is not reset each time
 	public static void writeFile(String filepath, String filetext) {
 		try {
 			FileWriter writer = new FileWriter(filepath);
@@ -52,5 +50,5 @@ public class FileEditor {
 		writer.close();
 				
 	}
-
+	
 }

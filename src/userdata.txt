@@ -1,10 +1,10 @@
 *********** DO NOT DELETE ***********
 ********* ChrisFit UserFile *********
 USER: Christian
+BIRTHDATE: 1995-03-26
+SEX: M
+WEEKLOSS: 2.0
+ACTIVITY: 1.2
+HEIGHT: 69.5
 GOAL: 180.0
 *************************************
-test append
-test append
-test append
-test append
-test append
